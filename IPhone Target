@@ -1,0 +1,57 @@
+git config --global credential.helper cache
+git config --global credential.helper store
+# macOS
+git config --global credential.helper osxkeychain
+
+# Windows
+git config --global credential.helper wincred
+
+# Linux
+git config --global credential.helper libsecretecho "# Iphon" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/clintonout/Iphon.git
+git push -u origin main
+# Example of cloning a repo with PAT
+git clone https://<username>:<personal-access-token>@github.com/<username>/<repo>.git
+import CoreMotion
+
+let motionManager = CMMotionManager()
+
+// Accelerometer
+if motionManager.isAccelerometerAvailable {
+    motionManager.accelerometerUpdateInterval = 0.1
+    motionManager.startAccelerometerUpdates(to: OperationQueue.main) { (data, error) in
+        if let data = data {
+            print("Accelerometer: \(data.acceleration)")
+        }
+    }
+}
+
+// Gyroscope
+if motionManager.isGyroAvailable {
+    motionManager.gyroUpdateInterval = 0.1
+    motionManager.startGyroUpdates(to: OperationQueue.main) { (data, error) in
+        if let data = data {
+            print("Gyroscope: \(data.rotationRate)")
+        }
+    }
+}
+import AVFoundation
+
+var audioPlayer: AVAudioPlayer?
+
+func playSound() {
+    if let path = Bundle.main.path(forResource: "sound", ofType: "mp3") {
+        let url = URL(fileURLWithPath: path)
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: url)
+            audioPlayer?.play()
+        } catch {
+            print("Error playing sound")
+
+        }
+    }
+}
